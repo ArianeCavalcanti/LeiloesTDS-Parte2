@@ -1,24 +1,32 @@
 # ✨Leilões TDS✨
 
 ## 💭 Contexto<br>
-Um novo projeto na empresa está sendo iniciado. Desta vez, uma casa de leilões está interessada em utilizar um sistema informatizado em suas rotinas.
-Como parte das práticas de segurança e de qualidade de software, a empresa lhe exige que o projeto esteja devidamente versionado utilizando o GitHub.
-Sua missão é criar um repositório para o projeto cuja implementação já foi iniciada.
+ 
+Com o repositório devidamente criado, agora é hora de iniciar as implementações no projeto da casa de leilões.
+Você ficou responsável pelo desenvolvimento de algumas funcionalidades e, evidentemente, é imperativo que no seu processo sejam utilizados os recursos de versionamento, mantendo um histórico de todas as alterações.
+ 
 
 # 🎯 Objetivo da atividade:
 
-1-Iniciar versionamento no repositório local.<br>
-2-Adicionar arquivos do projeto ao registro de commit.<br>
-3-Realizar o commit com a descrição “Projeto inicial”.<br>
-4-Criar um repositório remoto no GitHub.<br>
-5-Criar o link para o repositório remoto com o comando git remote.<br>
-6-Enviar para o repositório remoto.<br>
-
-Após isso, crie um arquivo README.md que contenha as seguintes informações:
+Você deve implementar as seguintes funcionalidades no projeto da atividade anterior:<br>
  
-Nome do projeto
-Explicação sobre o que se trata o projeto
-Tecnologias utilizadas (exemplo: Java e MySQL)
+- Atualmente, é necessário definir qual tela será aberta primeiro no projeto. A tela de cadastroVIEW deve ser definida como a tela principal.<br>
+- Deve haver a funcionalidade Salvar para que os itens sejam cadastrados no banco de dados.<br>
+- Uma mensagem informando se o cadastro foi realizado com sucesso ou não deve ser exibida.<br>
+- Deve haver uma listagem de dados para que todos os itens cadastrados apareçam na tela de listagem.<br>
+ 
+Para cada funcionalidade implementada deve ser realizado um commit com a descrição do que foi implementado. Exemplo:<br>
+ 
+- Commit #1: botão de salvar cadastrando produto.<br>
+- Commit #2: listagem de produtos funcionando.<br>
+ 
+ Observação: essas descrições são apenas alguns exemplos. Sinta-se à vontade para inserir o texto que descreve melhor a sua atividade no versionamento.<br>
+ 
+Lembre-se de testar cada funcionalidade implementada. Caso encontre algum bug no projeto, faça a correção e realize um novo commit chamado “Correção de bug em <local em que ocorria>”.<br>
+ 
+Além de implementar as funcionalidades no projeto, você deve criar um novo relatório contendo as evidências de versionamento.<br>
+
+ ---
 
 # 💻Tecnologias Usadas:
 
