@@ -1,18 +1,17 @@
 package view;
 
-
-import view.listagemVIEW;
 import dto.ProdutosDTO;
 import dao.ProdutosDAO;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
- *
- * @author Adm
+ * @author Ariane
+ * @version 1.0
+ * @since Primeira versão
  */
 public class cadastroVIEW extends javax.swing.JFrame {
 
@@ -21,6 +20,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
      */
     public cadastroVIEW() {
         initComponents();
+        setTitle("Cadastro de Produtos");
     }
 
     /**
@@ -142,8 +142,8 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastroNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroNomeActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -151,17 +151,39 @@ public class cadastroVIEW extends javax.swing.JFrame {
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
         String status = "A Venda";
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
-        
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
-        
+
+        // Verifica se os campos estão preenchidos
+        if (nome.isEmpty() || valor.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!");
+            return;
+        }
+
+        try {
+            // Substitui a vírgula por ponto e remove pontos de milhar
+            valor = valor.replace(".", "").replace(",", ".");
+
+            // Converte o valor para Double e cadastra o produto
+            produto.setNome(nome);
+            produto.setValor(Double.parseDouble(valor));
+            produto.setStatus(status);
+
+            ProdutosDAO produtodao = new ProdutosDAO();
+            produtodao.cadastrarProduto(produto);
+
+            // Limpa os campos após o cadastro
+            cadastroNome.setText("");
+            cadastroValor.setText("");
+
+        } catch (HeadlessException | NumberFormatException e) {
+            // Se ocorrer um erro durante o processo, exibe uma mensagem de erro genérica
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto: " + e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(cadastroVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
-        listagemVIEW listagem = new listagemVIEW(); 
+        listagemVIEW listagem = new listagemVIEW();
         listagem.setVisible(true);
     }//GEN-LAST:event_btnProdutosActionPerformed
 
@@ -181,22 +203,16 @@ public class cadastroVIEW extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cadastroVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cadastroVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cadastroVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(cadastroVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new cadastroVIEW().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new cadastroVIEW().setVisible(true);
         });
     }
 
